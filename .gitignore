@@ -4,3 +4,4 @@
 *.~undo-tree~
 /todoist*.md
 /todoist*.json
+/dependency-reduced-pom.xml
