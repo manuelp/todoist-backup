@@ -15,6 +15,8 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicHeader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,9 +31,9 @@ import java.util.Map;
 
 import static com.googlecode.totallylazy.Sequences.sequence;
 
-/**
- */
 public class TodoistGateway {
+  private static Logger log = LoggerFactory.getLogger(TodoistGateway.class);
+
   private final String email;
   private final String password;
 
@@ -47,9 +49,12 @@ public class TodoistGateway {
         put("password", password);
       }
     });
-    Result<Map<String, Object>> result = Json.parseMap(response);
-    if (result.failure()) throw new RuntimeException(result.message());
-    else return result.map(Functions.getApiToken()).value();
+    try {
+      Map<String, Object> res = new ObjectMapper().readValue(response, Map.class);
+      return Functions.getApiToken().call(res);
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
   }
 
   public Sequence<Project> getProjects(String apiToken) {
