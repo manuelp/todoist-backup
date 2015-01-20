@@ -49,6 +49,7 @@ public class TodoistGateway {
         put("password", password);
       }
     });
+    log.debug("Requested API token");
     try {
       Map<String, Object> res = new ObjectMapper().readValue(response, Map.class);
       return Functions.getApiToken().call(res);
@@ -63,6 +64,7 @@ public class TodoistGateway {
         put("token", apiToken);
       }
     });
+    log.debug("Requested projects");
     return parseList(response, Functions.readProject()).sort(Project.itemOrderComparator());
   }
 
@@ -72,6 +74,7 @@ public class TodoistGateway {
         put("token", apiToken);
       }
     });
+    log.debug("Requested archived projects");
     return parseList(response, Functions.readProject()).sort(Project.itemOrderComparator());
   }
 
@@ -82,6 +85,7 @@ public class TodoistGateway {
         put("project_id", String.valueOf(projectId));
       }
     });
+    log.debug("Requested items for project " + projectId);
     return parseList(response, m -> {
       Long id = getLong(m, "id");
       String content = (String) m.get("content");
