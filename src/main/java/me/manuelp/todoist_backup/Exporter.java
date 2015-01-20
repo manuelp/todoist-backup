@@ -1,6 +1,5 @@
 package me.manuelp.todoist_backup;
 
-import com.fasterxml.jackson.core.JsonFactory;
 import com.googlecode.totallylazy.Pair;
 import com.googlecode.totallylazy.Sequence;
 import me.manuelp.todoist_backup.data.Item;

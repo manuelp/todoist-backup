@@ -16,7 +16,7 @@ public class JsonExporter {
 
   public JsonExporter(Path exportPath) throws IOException {
     JsonFactory f = new JsonFactory();
-    g = f.createGenerator(exportPath.toFile(), JsonEncoding.UTF8);
+    g = f.createGenerator(exportPath.toFile(), JsonEncoding.UTF8).useDefaultPrettyPrinter();
   }
 
   public void export(Sequence<Pair<Project, Sequence<Item>>> projects) {
