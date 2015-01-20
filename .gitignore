@@ -2,5 +2,5 @@
 /target
 /*.iml
 *.~undo-tree~
-/export.md
-/export.json
+/todoist*.md
+/todoist*.json

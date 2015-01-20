@@ -4,8 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.googlecode.totallylazy.Callable1;
 import com.googlecode.totallylazy.Option;
 import com.googlecode.totallylazy.Sequence;
-import com.googlecode.totallylazy.json.Json;
-import com.googlecode.totallylazy.parser.Result;
 import me.manuelp.todoist_backup.data.Item;
 import me.manuelp.todoist_backup.data.Project;
 import org.apache.commons.io.IOUtils;
